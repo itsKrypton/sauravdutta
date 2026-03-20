@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv /tmp/_superpowers_backup /Users/1sauravdutta/Desktop/sauravdutta/.superpowers)",
+      "Bash(mv /tmp/_claude_backup /Users/1sauravdutta/Desktop/sauravdutta/.claude)",
+      "Bash(mv /tmp/_docs_backup /Users/1sauravdutta/Desktop/sauravdutta/docs)",
+      "Bash(npm install:*)",
+      "Bash(ls /Users/1sauravdutta/Desktop/sauravdutta/tailwind.config*)",
+      "Bash(ls /Users/1sauravdutta/Desktop/sauravdutta/next.config*)",
+      "Bash(git commit:*)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "Bash(mv /Users/1sauravdutta/Desktop/sauravdutta/.superpowers /tmp/_superpowers_backup)",
+      "Bash(mv /Users/1sauravdutta/Desktop/sauravdutta/.claude /tmp/_claude_backup)",
+      "Bash(mv /Users/1sauravdutta/Desktop/sauravdutta/docs /tmp/_docs_backup)"
+    ]
+  }
+}
