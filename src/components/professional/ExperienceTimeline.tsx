@@ -19,6 +19,7 @@ export default function ExperienceTimeline({
         <SectionHeading
           title={SECTIONS.experience.title}
           subtitle={SECTIONS.experience.subtitle}
+          accentWord="Evolution"
         />
 
         <div className="relative ml-4 border-l-2 border-border pl-8 md:ml-8">

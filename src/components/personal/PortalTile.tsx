@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 interface PortalTileProps {
   tile: PersonalTile;
+  index?: number;
 }
 
 const sizeClasses: Record<PersonalTile["size"], string> = {
@@ -16,7 +17,9 @@ const sizeClasses: Record<PersonalTile["size"], string> = {
   small: "col-span-1 row-span-1",
 };
 
-export default function PortalTile({ tile }: PortalTileProps) {
+export default function PortalTile({ tile, index = 0 }: PortalTileProps) {
+  const label = String(index + 1).padStart(2, "0");
+
   const content = (
     <div className="group relative flex h-full flex-col justify-end overflow-hidden rounded-2xl border border-border bg-bg-card">
       {tile.bgImage && (
@@ -28,8 +31,15 @@ export default function PortalTile({ tile }: PortalTileProps) {
         />
       )}
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/90 via-bg-primary/40 to-transparent" />
+      {/* Gradient overlay — stronger for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/95 via-bg-primary/50 to-bg-primary/20" />
+
+      {/* Numbered category label */}
+      <div className="absolute left-4 top-4 z-10">
+        <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-text-primary/70">
+          {label}. {tile.title}
+        </span>
+      </div>
 
       {/* Content */}
       <div className="relative flex min-h-[200px] flex-col justify-end p-6">

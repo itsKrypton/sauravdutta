@@ -11,6 +11,11 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-border: var(--border);
+  --color-accent-rgb: var(--accent-rgb);
+
+  /* Shadows */
+  --shadow-accent-glow: var(--accent-glow);
+  --shadow-accent-glow-strong: var(--accent-glow-strong);
 
   /* Fonts */
   --font-heading: var(--font-space-grotesk), sans-serif;

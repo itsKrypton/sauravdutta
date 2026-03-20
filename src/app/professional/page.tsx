@@ -80,6 +80,8 @@ export default async function ProfessionalPage() {
             <SectionHeading
               title={SECTIONS.projects.title}
               subtitle={SECTIONS.projects.subtitle}
+              accentWord="Case Studies"
+              label="SELECTED WORK"
             />
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

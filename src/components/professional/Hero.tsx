@@ -12,8 +12,6 @@ interface HeroProps {
 export default function Hero({ socials, siteSettings }: HeroProps) {
   const name = siteSettings?.name ?? SITE_CONFIG.name;
   const tagline = siteSettings?.tagline ?? SITE_CONFIG.tagline;
-
-  // Fall back to static import if no props provided
   const socialLinks = socials ?? [];
 
   return (
@@ -43,14 +41,14 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
           </div>
 
           {/* Social links */}
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5 sm:gap-3 md:justify-start">
             {socialLinks.map((social: SocialLink) => (
               <a
                 key={social.name}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-text-secondary transition-colors duration-fast hover:border-accent hover:text-accent"
+                className="inline-flex items-center rounded-lg border border-border px-3.5 py-2 text-sm text-text-secondary transition-colors duration-fast hover:border-accent hover:text-accent sm:px-4"
               >
                 {social.name}
               </a>

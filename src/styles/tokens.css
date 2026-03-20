@@ -6,9 +6,12 @@
     --bg-card: #ffffff;
     --accent: #0d7377;
     --accent-hover: #0a5c5f;
+    --accent-rgb: 13, 115, 119;
     --text-primary: #1a1a2e;
     --text-secondary: #5a6672;
     --border: #d8dee3;
+    --accent-glow: 0 0 20px rgba(13, 115, 119, 0.15);
+    --accent-glow-strong: 0 0 30px rgba(13, 115, 119, 0.25);
 
     /* Animation */
     --duration-fast: 150ms;
@@ -25,8 +28,11 @@
     --bg-card: #1e1e1e;
     --accent: #d4a843;
     --accent-hover: #e4bc5a;
+    --accent-rgb: 212, 168, 67;
     --text-primary: #f5f0e8;
     --text-secondary: #a89f91;
     --border: #2a2520;
+    --accent-glow: 0 0 20px rgba(212, 168, 67, 0.15);
+    --accent-glow-strong: 0 0 30px rgba(212, 168, 67, 0.25);
   }
 }

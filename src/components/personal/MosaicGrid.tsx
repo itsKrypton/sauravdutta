@@ -22,8 +22,8 @@ export default function MosaicGrid({ personalTiles }: MosaicGridProps) {
         />
 
         <div className="grid auto-rows-[140px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {tiles.map((tile: PersonalTile) => (
-            <PortalTile key={tile.id} tile={tile} />
+          {tiles.map((tile: PersonalTile, index: number) => (
+            <PortalTile key={tile.id} tile={tile} index={index} />
           ))}
         </div>
       </div>
