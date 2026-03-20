@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Card from "@/components/shared/Card";
+import { SECTIONS } from "@/lib/constants";
 import type { Achievement } from "@/types";
 
 interface CodingAchievementsProps {
@@ -14,8 +15,8 @@ export default function CodingAchievements({ achievements }: CodingAchievementsP
     <AnimatedSection id="achievements">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          title="Achievements"
-          subtitle="Competitive programming milestones and recognitions."
+          title={SECTIONS.achievements.title}
+          subtitle={SECTIONS.achievements.subtitle}
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

@@ -12,8 +12,8 @@ export const projects: Project[] = [
       "Implemented AI-driven receipt scanning using Google's Gemini API, achieving 97%+ accuracy in extracting structured data from uploaded images.",
       "Automated monthly financial reporting by generating personalized insights from user transactions, contributing to a 65% increase in user engagement.",
     ],
-    repoUrl: "#",
-    liveUrl: "#",
+    repoUrl: "https://github.com/itsKrypton/welth",
+    liveUrl: "https://welth-theta.vercel.app/",
   },
   {
     id: "customer-support",
@@ -26,6 +26,6 @@ export const projects: Project[] = [
       "Produced a keyboard-accessible React.js frontend with full CRUD functionality utilizing REST API endpoints, having a 9.5/10 accessibility score.",
       "Structured the application into distinct user and employee portals, enabling streamlined ticket creation and efficient tracking.",
     ],
-    repoUrl: "#",
+    repoUrl: "https://github.com/itsKrypton/CSMessagingApp",
   },
 ];

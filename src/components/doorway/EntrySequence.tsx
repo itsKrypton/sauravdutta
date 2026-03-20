@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { SITE_CONFIG, ROUTES } from "@/lib/constants";
+import { SITE_CONFIG, ROUTES, DOORWAY } from "@/lib/constants";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import SplitDoor from "./SplitDoor";
 
@@ -86,7 +86,7 @@ export default function EntrySequence() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
-              Software Engineer. Musician. Explorer.
+              {SITE_CONFIG.subtitle}
             </motion.p>
           </motion.div>
         )}
@@ -105,7 +105,7 @@ export default function EntrySequence() {
             }}
           >
             <h2 className="font-heading text-4xl font-bold text-text-primary md:text-6xl">
-              Choose your side.
+              {DOORWAY.chooseText}
             </h2>
           </motion.div>
         )}

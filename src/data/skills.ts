@@ -9,7 +9,12 @@ export const skills: SkillCategory[] = [
   {
     id: "frameworks",
     name: "Frameworks",
-    items: ["React.js", "Next.js", "AngularJS", "Express.js", "Node.js", "Tailwind"],
+    items: ["React.js", "Next.js", "Express.js", "Node.js", "Tailwind"],
+  },
+  {
+    id: "ai",
+    name: "AI & LLMs",
+    items: ["Gemini API", "Claude Code", "Codex", "MCPs", "Prompt Engineering", "AI-Native Development"],
   },
   {
     id: "tools",

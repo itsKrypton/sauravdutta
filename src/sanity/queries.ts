@@ -1,4 +1,4 @@
-export const experienceQuery = `*[_type == "experience"] | order(startDate desc)`;
+export const experienceQuery = `*[_type == "experience"] | order(startDate desc) { ..., "companyLogoUrl": companyLogo.asset->url }`;
 export const projectsQuery = `*[_type == "project"] | order(date desc)`;
 export const skillsQuery = `*[_type == "skillCategory"] | order(orderRank asc)`;
 export const achievementsQuery = `*[_type == "achievement"]`;

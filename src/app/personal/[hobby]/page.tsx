@@ -1,12 +1,12 @@
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-import { ROUTES } from "@/lib/constants";
+import { ROUTES, DOORWAY } from "@/lib/constants";
 import type { NavConfig } from "@/types";
 import Link from "next/link";
 
 const navConfig: NavConfig = {
   showSectionLinks: false,
-  otherSideLabel: "The Professional",
+  otherSideLabel: DOORWAY.professional.title,
   otherSideHref: ROUTES.professional,
 };
 
@@ -24,7 +24,7 @@ export default async function HobbyPage({ params }: { params: Promise<{ hobby: s
           href={ROUTES.personal}
           className="mt-8 text-accent transition-colors duration-fast hover:text-accent-hover"
         >
-          &larr; Back to The Person
+          &larr; Back to {DOORWAY.personal.title}
         </Link>
       </main>
       <Footer variant="personal" />

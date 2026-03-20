@@ -24,7 +24,7 @@ export default function PortalTile({ tile }: PortalTileProps) {
           src={tile.bgImage}
           alt={tile.title}
           fill
-          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          className="object-cover object-[center_25%] transition-transform duration-500 group-hover:scale-105"
         />
       )}
 

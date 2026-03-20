@@ -1,5 +1,7 @@
+import Image from "next/image";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
+import { SECTIONS } from "@/lib/constants";
 import type { ExperienceEntry } from "@/types";
 
 interface ExperienceTimelineProps {
@@ -13,8 +15,8 @@ export default function ExperienceTimeline({ experience }: ExperienceTimelinePro
     <AnimatedSection id="experience">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          title="Career Evolution"
-          subtitle="A timeline of roles, impact, and growth."
+          title={SECTIONS.experience.title}
+          subtitle={SECTIONS.experience.subtitle}
         />
 
         <div className="relative ml-4 border-l-2 border-border pl-8 md:ml-8">
@@ -34,13 +36,24 @@ export default function ExperienceTimeline({ experience }: ExperienceTimelinePro
               </h3>
 
               {/* Company & location */}
-              <p className="mt-0.5">
-                <span className="text-accent">{entry.company}</span>
-                <span className="text-text-secondary">
-                  {" "}
-                  &middot; {entry.location}
-                </span>
-              </p>
+              <div className="mt-0.5 flex items-center gap-2">
+                {(entry as any).companyLogoUrl && (
+                  <Image
+                    src={(entry as any).companyLogoUrl}
+                    alt={entry.company}
+                    width={24}
+                    height={24}
+                    className="rounded object-contain"
+                  />
+                )}
+                <p>
+                  <span className="text-accent">{entry.company}</span>
+                  <span className="text-text-secondary">
+                    {" "}
+                    &middot; {entry.location}
+                  </span>
+                </p>
+              </div>
 
               {/* Highlights */}
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-text-secondary">

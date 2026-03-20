@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DoorPanel from "./DoorPanel";
+import { DOORWAY } from "@/lib/constants";
 
 interface SplitDoorProps {
   onChoose: (side: "professional" | "personal") => void;
@@ -23,8 +24,8 @@ export default function SplitDoor({ onChoose, chosenSide }: SplitDoorProps) {
   return (
     <div className="flex h-screen w-full">
       <DoorPanel
-        title="The Professional"
-        subtitle="Experience. Projects. Skills."
+        title={DOORWAY.professional.title}
+        subtitle={DOORWAY.professional.subtitle}
         side="left"
         isHovered={effectiveHovered === "left"}
         isOtherHovered={effectiveHovered === "right"}
@@ -33,8 +34,8 @@ export default function SplitDoor({ onChoose, chosenSide }: SplitDoorProps) {
         onHoverEnd={() => setHoveredSide(null)}
       />
       <DoorPanel
-        title="The Person"
-        subtitle="Music. Travel. Fitness. Life."
+        title={DOORWAY.personal.title}
+        subtitle={DOORWAY.personal.subtitle}
         side="right"
         isHovered={effectiveHovered === "right"}
         isOtherHovered={effectiveHovered === "left"}

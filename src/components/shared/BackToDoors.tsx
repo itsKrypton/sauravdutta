@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ROUTES } from "@/lib/constants";
+import { ROUTES, NAV_LABELS } from "@/lib/constants";
 
 export default function BackToDoors() {
   return (
@@ -7,7 +7,7 @@ export default function BackToDoors() {
       href={ROUTES.home}
       className="text-sm text-text-secondary transition-colors duration-fast hover:text-accent"
     >
-      Back to Doors
+      {NAV_LABELS.backToDoors}
     </Link>
   );
 }

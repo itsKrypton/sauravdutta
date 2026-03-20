@@ -22,7 +22,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
         {/* Text */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <span className="text-sm font-semibold uppercase tracking-widest text-accent">
-            Frontend Engineer
+            {SITE_CONFIG.currentRole}
           </span>
 
           <h1 className="mt-3 font-heading text-5xl font-bold tracking-tight text-text-primary md:text-7xl">
@@ -39,7 +39,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
             </span>
-            Currently at Stage
+            Currently at {SITE_CONFIG.currentCompany}
           </div>
 
           {/* Social links */}
@@ -62,7 +62,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
         <div className="relative h-64 w-64 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-border md:h-80 md:w-80">
           <Image
             src="/images/headshot.jpg"
-            alt="Saurav Dutta"
+            alt={SITE_CONFIG.name}
             fill
             className="object-cover object-[center_20%]"
             priority

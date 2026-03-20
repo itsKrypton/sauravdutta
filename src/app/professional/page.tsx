@@ -10,7 +10,7 @@ import Education from "@/components/professional/Education";
 import ContactCTA from "@/components/professional/ContactCTA";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { ROUTES } from "@/lib/constants";
+import { ROUTES, SITE_CONFIG, DOORWAY, NAV_LABELS, SECTIONS } from "@/lib/constants";
 import type { NavConfig } from "@/types";
 import {
   getExperience,
@@ -23,21 +23,20 @@ import {
 } from "@/sanity/fetch";
 
 export const metadata: Metadata = {
-  title: "Saurav Dutta | Professional Portfolio",
-  description:
-    "Frontend engineer building high-performance web applications with Next.js, React, and TypeScript.",
+  title: `${SITE_CONFIG.name} | Professional Portfolio`,
+  description: SITE_CONFIG.tagline,
 };
 
 const navConfig: NavConfig = {
   showSectionLinks: true,
   sectionLinks: [
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Achievements", href: "#achievements" },
-    { label: "Education", href: "#education" },
+    { label: NAV_LABELS.skills, href: "#skills" },
+    { label: NAV_LABELS.experience, href: "#experience" },
+    { label: NAV_LABELS.projects, href: "#projects" },
+    { label: NAV_LABELS.achievements, href: "#achievements" },
+    { label: NAV_LABELS.education, href: "#education" },
   ],
-  otherSideLabel: "The Person",
+  otherSideLabel: DOORWAY.personal.title,
   otherSideHref: ROUTES.personal,
 };
 
@@ -66,8 +65,8 @@ export default async function ProfessionalPage() {
         <AnimatedSection id="projects">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <SectionHeading
-              title="Selected Case Studies"
-              subtitle="Projects that showcase engineering depth and product thinking."
+              title={SECTIONS.projects.title}
+              subtitle={SECTIONS.projects.subtitle}
             />
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

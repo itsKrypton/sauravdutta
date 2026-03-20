@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Card from "@/components/shared/Card";
+import { SECTIONS } from "@/lib/constants";
 import type { SkillCategory } from "@/types";
 
 interface TechStackGridProps {
@@ -13,9 +14,9 @@ export default function TechStackGrid({ skills }: TechStackGridProps) {
   return (
     <AnimatedSection id="skills">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading title="Technical Proficiency" />
+        <SectionHeading title={SECTIONS.skills.title} />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {categories.map((category: SkillCategory) => (
             <Card key={category.id}>
               <h3 className="mb-4 font-heading text-lg font-semibold text-accent">

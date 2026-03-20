@@ -3,6 +3,7 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import PortalTile from "./PortalTile";
+import { SECTIONS } from "@/lib/constants";
 import type { PersonalTile } from "@/types";
 
 interface MosaicGridProps {
@@ -16,8 +17,8 @@ export default function MosaicGrid({ personalTiles }: MosaicGridProps) {
     <AnimatedSection className="pt-24 md:pt-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          title="The Person."
-          subtitle="Beyond the code — a peek into my world."
+          title={SECTIONS.personal.title}
+          subtitle={SECTIONS.personal.subtitle}
         />
 
         <div className="grid auto-rows-[140px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

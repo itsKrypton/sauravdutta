@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Card from "@/components/shared/Card";
+import { SECTIONS } from "@/lib/constants";
 import type { EducationEntry } from "@/types";
 
 interface EducationProps {
@@ -13,7 +14,7 @@ export default function Education({ education }: EducationProps) {
   return (
     <AnimatedSection id="education">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading title="Education" />
+        <SectionHeading title={SECTIONS.education.title} />
 
         <div className="mx-auto max-w-2xl">
           {entries.map((edu: EducationEntry) => (
