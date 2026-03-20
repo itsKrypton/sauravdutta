@@ -14,7 +14,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
   const tagline = siteSettings?.tagline ?? SITE_CONFIG.tagline;
 
   // Fall back to static import if no props provided
-  const socialLinks = socials ?? require("@/data/socials").socials;
+  const socialLinks = socials ?? [];
 
   return (
     <AnimatedSection id="hero" className="pt-24 md:pt-32">

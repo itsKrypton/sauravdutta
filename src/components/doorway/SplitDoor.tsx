@@ -14,21 +14,19 @@ export default function SplitDoor({ onChoose, chosenSide }: SplitDoorProps) {
     null
   );
 
-  // When chosenSide is set, override hover state to expand the chosen panel
-  const effectiveHovered = chosenSide
-    ? chosenSide === "professional"
-      ? "left"
-      : "right"
-    : hoveredSide;
+  const isLeftChosen = chosenSide === "professional";
+  const isRightChosen = chosenSide === "personal";
 
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex h-screen w-full flex-col md:flex-row">
       <DoorPanel
         title={DOORWAY.professional.title}
         subtitle={DOORWAY.professional.subtitle}
         side="left"
-        isHovered={effectiveHovered === "left"}
-        isOtherHovered={effectiveHovered === "right"}
+        isHovered={!chosenSide && hoveredSide === "left"}
+        isOtherHovered={!chosenSide && hoveredSide === "right"}
+        isChosen={isLeftChosen}
+        isOtherChosen={isRightChosen}
         onClick={() => onChoose("professional")}
         onHoverStart={() => setHoveredSide("left")}
         onHoverEnd={() => setHoveredSide(null)}
@@ -37,8 +35,10 @@ export default function SplitDoor({ onChoose, chosenSide }: SplitDoorProps) {
         title={DOORWAY.personal.title}
         subtitle={DOORWAY.personal.subtitle}
         side="right"
-        isHovered={effectiveHovered === "right"}
-        isOtherHovered={effectiveHovered === "left"}
+        isHovered={!chosenSide && hoveredSide === "right"}
+        isOtherHovered={!chosenSide && hoveredSide === "left"}
+        isChosen={isRightChosen}
+        isOtherChosen={isLeftChosen}
         onClick={() => onChoose("personal")}
         onHoverStart={() => setHoveredSide("right")}
         onHoverEnd={() => setHoveredSide(null)}

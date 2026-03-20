@@ -11,7 +11,7 @@ interface MosaicGridProps {
 }
 
 export default function MosaicGrid({ personalTiles }: MosaicGridProps) {
-  const tiles = personalTiles ?? require("@/data/personal-tiles").personalTiles;
+  const tiles = personalTiles ?? [];
 
   return (
     <AnimatedSection className="pt-24 md:pt-32">

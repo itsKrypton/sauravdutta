@@ -9,7 +9,7 @@ interface CodingAchievementsProps {
 }
 
 export default function CodingAchievements({ achievements }: CodingAchievementsProps) {
-  const items = achievements ?? require("@/data/achievements").achievements;
+  const items = achievements ?? [];
 
   return (
     <AnimatedSection id="achievements">

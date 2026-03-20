@@ -1,14 +1,5 @@
 import { client } from "./client";
 import * as queries from "./queries";
-
-// Static fallbacks
-import { experience as staticExperience } from "@/data/experience";
-import { projects as staticProjects } from "@/data/projects";
-import { skills as staticSkills } from "@/data/skills";
-import { achievements as staticAchievements } from "@/data/achievements";
-import { education as staticEducation } from "@/data/education";
-import { personalTiles as staticPersonalTiles } from "@/data/personal-tiles";
-import { socials as staticSocials } from "@/data/socials";
 import { SITE_CONFIG } from "@/lib/constants";
 
 import type {
@@ -24,63 +15,63 @@ import type {
 export async function getExperience(): Promise<ExperienceEntry[]> {
   try {
     const data = await client.fetch(queries.experienceQuery);
-    return data?.length ? data : staticExperience;
+    return data?.length ? data : [];
   } catch {
-    return staticExperience;
+    return [];
   }
 }
 
 export async function getProjects(): Promise<Project[]> {
   try {
     const data = await client.fetch(queries.projectsQuery);
-    return data?.length ? data : staticProjects;
+    return data?.length ? data : [];
   } catch {
-    return staticProjects;
+    return [];
   }
 }
 
 export async function getSkills(): Promise<SkillCategory[]> {
   try {
     const data = await client.fetch(queries.skillsQuery);
-    return data?.length ? data : staticSkills;
+    return data?.length ? data : [];
   } catch {
-    return staticSkills;
+    return [];
   }
 }
 
 export async function getAchievements(): Promise<Achievement[]> {
   try {
     const data = await client.fetch(queries.achievementsQuery);
-    return data?.length ? data : staticAchievements;
+    return data?.length ? data : [];
   } catch {
-    return staticAchievements;
+    return [];
   }
 }
 
 export async function getEducation(): Promise<EducationEntry[]> {
   try {
     const data = await client.fetch(queries.educationQuery);
-    return data?.length ? data : staticEducation;
+    return data?.length ? data : [];
   } catch {
-    return staticEducation;
+    return [];
   }
 }
 
 export async function getPersonalTiles(): Promise<PersonalTile[]> {
   try {
     const data = await client.fetch(queries.personalTilesQuery);
-    return data?.length ? data : staticPersonalTiles;
+    return data?.length ? data : [];
   } catch {
-    return staticPersonalTiles;
+    return [];
   }
 }
 
 export async function getSocials(): Promise<SocialLink[]> {
   try {
     const data = await client.fetch(queries.socialsQuery);
-    return data?.length ? data : staticSocials;
+    return data?.length ? data : [];
   } catch {
-    return staticSocials;
+    return [];
   }
 }
 

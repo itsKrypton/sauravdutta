@@ -9,7 +9,7 @@ interface ExperienceTimelineProps {
 }
 
 export default function ExperienceTimeline({ experience }: ExperienceTimelineProps) {
-  const entries = experience ?? require("@/data/experience").experience;
+  const entries = experience ?? [];
 
   return (
     <AnimatedSection id="experience">

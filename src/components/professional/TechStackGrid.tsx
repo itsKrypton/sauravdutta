@@ -9,7 +9,7 @@ interface TechStackGridProps {
 }
 
 export default function TechStackGrid({ skills }: TechStackGridProps) {
-  const categories = skills ?? require("@/data/skills").skills;
+  const categories = skills ?? [];
 
   return (
     <AnimatedSection id="skills">

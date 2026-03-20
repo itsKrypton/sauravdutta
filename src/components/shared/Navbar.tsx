@@ -104,26 +104,42 @@ export default function Navbar({ config }: NavbarProps) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden border-t border-border md:hidden"
           >
-            <div className="flex flex-col gap-3 px-4 py-4">
-              {config.showSectionLinks &&
-                config.sectionLinks?.map((link) => (
-                  <button
-                    key={link.href}
-                    onClick={() => handleSectionClick(link.href)}
-                    className="text-left text-sm text-text-secondary transition-colors duration-fast hover:text-accent"
+            <div className="flex flex-col px-4 py-4">
+              {/* Section links */}
+              {config.showSectionLinks && config.sectionLinks && (
+                <div className="flex flex-col gap-3 pb-4">
+                  {config.sectionLinks.map((link) => (
+                    <button
+                      key={link.href}
+                      onClick={() => handleSectionClick(link.href)}
+                      className="text-left text-sm text-text-secondary transition-colors duration-fast hover:text-accent"
+                    >
+                      {link.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Navigation actions */}
+              <div className="flex items-center justify-between border-t border-border pt-4">
+                <div className="flex items-center gap-4">
+                  <Link
+                    href={config.otherSideHref}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
                   >
-                    {link.label}
-                  </button>
-                ))}
-              <BackToDoors />
-              <Link
-                href={config.otherSideHref}
-                onClick={() => setMobileOpen(false)}
-                className="text-sm text-text-secondary transition-colors duration-fast hover:text-accent"
-              >
-                {config.otherSideLabel}
-              </Link>
-              <ThemeToggle />
+                    {config.otherSideLabel}
+                  </Link>
+                  <Link
+                    href="/"
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
+                  >
+                    Doorway
+                  </Link>
+                </div>
+                <ThemeToggle />
+              </div>
             </div>
           </motion.div>
         )}

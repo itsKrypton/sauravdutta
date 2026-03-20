@@ -7,7 +7,7 @@ import { SITE_CONFIG, ROUTES, DOORWAY } from "@/lib/constants";
 import ThemeToggle from "@/components/shared/ThemeToggle";
 import SplitDoor from "./SplitDoor";
 
-type Phase = "name" | "choose" | "split" | "zooming";
+type Phase = "name" | "choose" | "split";
 
 export default function EntrySequence() {
   const [phase, setPhase] = useState<Phase>("name");
@@ -19,10 +19,7 @@ export default function EntrySequence() {
   // Phase: "name" -> after subtitle animates in + 800ms delay -> "choose"
   useEffect(() => {
     if (phase === "name") {
-      // Name fades up (0.6s) + subtitle delay (0.4s) + subtitle fade (0.5s) + 800ms wait
-      const timer = setTimeout(() => {
-        setPhase("choose");
-      }, 2300);
+      const timer = setTimeout(() => setPhase("choose"), 2300);
       return () => clearTimeout(timer);
     }
   }, [phase]);
@@ -30,29 +27,26 @@ export default function EntrySequence() {
   // Phase: "choose" -> after animation + 1000ms delay -> "split"
   useEffect(() => {
     if (phase === "choose") {
-      const timer = setTimeout(() => {
-        setPhase("split");
-      }, 1800);
+      const timer = setTimeout(() => setPhase("split"), 1800);
       return () => clearTimeout(timer);
     }
   }, [phase]);
 
-  // Phase: "zooming" -> after 500ms -> navigate
+  // When a side is chosen, let the expand animation play, then navigate
   useEffect(() => {
-    if (phase === "zooming" && chosenSide) {
+    if (chosenSide) {
       const timer = setTimeout(() => {
         router.push(
           chosenSide === "professional" ? ROUTES.professional : ROUTES.personal
         );
-      }, 500);
+      }, 700);
       return () => clearTimeout(timer);
     }
-  }, [phase, chosenSide, router]);
+  }, [chosenSide, router]);
 
   const handleChoose = useCallback(
     (side: "professional" | "personal") => {
       setChosenSide(side);
-      setPhase("zooming");
     },
     []
   );
@@ -73,7 +67,7 @@ export default function EntrySequence() {
             transition={{ duration: 0.3 }}
           >
             <motion.h1
-              className="font-heading text-5xl font-bold text-text-primary md:text-7xl"
+              className="px-6 text-center font-heading text-4xl font-bold text-text-primary sm:text-5xl md:text-7xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -81,7 +75,7 @@ export default function EntrySequence() {
               {SITE_CONFIG.name}
             </motion.h1>
             <motion.p
-              className="mt-4 text-lg text-text-secondary md:text-xl"
+              className="mt-4 px-6 text-center text-base text-text-secondary sm:text-lg md:text-xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.5 }}
@@ -104,7 +98,7 @@ export default function EntrySequence() {
               damping: 20,
             }}
           >
-            <h2 className="font-heading text-4xl font-bold text-text-primary md:text-6xl">
+            <h2 className="px-6 text-center font-heading text-3xl font-bold text-text-primary sm:text-4xl md:text-6xl">
               {DOORWAY.chooseText}
             </h2>
           </motion.div>
@@ -118,19 +112,7 @@ export default function EntrySequence() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <SplitDoor onChoose={handleChoose} />
-          </motion.div>
-        )}
-
-        {phase === "zooming" && (
-          <motion.div
-            key="zooming"
-            className="h-full w-full"
-            initial={{ scale: 1, opacity: 1 }}
-            animate={{ scale: 1.2, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <SplitDoor onChoose={() => {}} chosenSide={chosenSide} />
+            <SplitDoor onChoose={handleChoose} chosenSide={chosenSide} />
           </motion.div>
         )}
       </AnimatePresence>

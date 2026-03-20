@@ -9,7 +9,7 @@ interface EducationProps {
 }
 
 export default function Education({ education }: EducationProps) {
-  const entries = education ?? require("@/data/education").education;
+  const entries = education ?? [];
 
   return (
     <AnimatedSection id="education">
