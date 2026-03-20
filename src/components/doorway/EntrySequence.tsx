@@ -130,7 +130,7 @@ export default function EntrySequence() {
             animate={{ scale: 1.2, opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <SplitDoor onChoose={() => {}} />
+            <SplitDoor onChoose={() => {}} chosenSide={chosenSide} />
           </motion.div>
         )}
       </AnimatePresence>

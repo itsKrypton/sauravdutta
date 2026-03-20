@@ -28,6 +28,9 @@ export default function DoorPanel({
 
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
+      aria-label={title}
       className={cn(
         "relative flex cursor-pointer flex-col items-center justify-center overflow-hidden",
         side === "left" ? "border-r border-border" : "border-l border-border"
@@ -41,7 +44,15 @@ export default function DoorPanel({
         stiffness: 300,
         damping: 30,
       }}
+      layout={false}
+      style={{ willChange: "flex-grow" }}
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
     >

@@ -6,6 +6,7 @@ import TechStackGrid from "@/components/professional/TechStackGrid";
 import ExperienceTimeline from "@/components/professional/ExperienceTimeline";
 import ProjectCard from "@/components/professional/ProjectCard";
 import CodingAchievements from "@/components/professional/CodingAchievements";
+import Education from "@/components/professional/Education";
 import ContactCTA from "@/components/professional/ContactCTA";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -59,6 +60,7 @@ export default function ProfessionalPage() {
         </AnimatedSection>
 
         <CodingAchievements />
+        <Education />
         <ContactCTA />
       </main>
 
