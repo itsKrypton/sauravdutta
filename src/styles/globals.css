@@ -31,7 +31,8 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    transition: background-color var(--duration-normal) var(--easing-default),
-                color var(--duration-normal) var(--easing-default);
+    transition:
+      background-color var(--duration-normal) var(--easing-default),
+      color var(--duration-normal) var(--easing-default);
   }
 }

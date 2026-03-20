@@ -14,7 +14,8 @@
       "Bash(cp /Users/1sauravdutta/Downloads/1758008400572.jpg /Users/1sauravdutta/Desktop/sauravdutta/public/images/headshot.jpg)",
       "Bash(cp /Users/1sauravdutta/Downloads/20250525_171854\\\\\\(1\\\\\\).jpg /Users/1sauravdutta/Desktop/sauravdutta/public/images/casual.jpg)",
       "Bash(SANITY_TOKEN=\"skN3f0cVbqVweVRXH5ukptLaT6u6pbpKyLyPl4HPPQ3kzQc6fkMSZGC0rp5dVeMwL1lEh9OLjCfwfimjdryb6b8qucsLnZzmp7az95iJzlIUzzZtAoMCoMJhYlyhwIfY4PwhHBD3ydd8ll1cD0l0OLVLnfpP6TCCbM23YL6benSVxa9yaGGz\" node scripts/seed-sanity.mjs)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npx prettier:*)"
     ]
   }
 }

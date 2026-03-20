@@ -50,7 +50,7 @@ export default function DoorPanel({
         "relative flex cursor-pointer flex-col items-center justify-center overflow-hidden px-4",
         side === "left"
           ? "border-b border-border md:border-b-0 md:border-r"
-          : "border-t border-border md:border-t-0 md:border-l"
+          : "border-t border-border md:border-t-0 md:border-l",
       )}
       animate={{ flex, opacity }}
       transition={
@@ -83,7 +83,10 @@ export default function DoorPanel({
           opacity: isOtherChosen ? 0 : 1,
           scale: isHovered && !isChosen ? 1.03 : 1,
         }}
-        transition={{ opacity: { duration: 0.15 }, scale: { type: "spring", stiffness: 400, damping: 35 } }}
+        transition={{
+          opacity: { duration: 0.15 },
+          scale: { type: "spring", stiffness: 400, damping: 35 },
+        }}
       >
         <h2 className="text-center font-heading text-2xl font-bold text-text-primary sm:text-3xl md:text-5xl">
           {title}

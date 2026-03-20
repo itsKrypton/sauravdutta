@@ -10,9 +10,7 @@ interface SplitDoorProps {
 }
 
 export default function SplitDoor({ onChoose, chosenSide }: SplitDoorProps) {
-  const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(
-    null
-  );
+  const [hoveredSide, setHoveredSide] = useState<"left" | "right" | null>(null);
 
   const isLeftChosen = chosenSide === "professional";
   const isRightChosen = chosenSide === "personal";

@@ -10,15 +10,23 @@ const navConfig: NavConfig = {
   otherSideHref: ROUTES.professional,
 };
 
-export default async function HobbyPage({ params }: { params: Promise<{ hobby: string }> }) {
+export default async function HobbyPage({
+  params,
+}: {
+  params: Promise<{ hobby: string }>;
+}) {
   const { hobby } = await params;
-  const title = hobby.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const title = hobby
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 
   return (
     <>
       <Navbar config={navConfig} />
       <main className="flex min-h-screen flex-col items-center justify-center bg-bg-primary pt-16">
-        <h1 className="font-heading text-4xl font-bold text-text-primary">{title}</h1>
+        <h1 className="font-heading text-4xl font-bold text-text-primary">
+          {title}
+        </h1>
         <p className="mt-4 text-text-secondary">Coming soon.</p>
         <Link
           href={ROUTES.personal}

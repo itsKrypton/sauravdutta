@@ -8,7 +8,9 @@ interface ExperienceTimelineProps {
   experience?: ExperienceEntry[];
 }
 
-export default function ExperienceTimeline({ experience }: ExperienceTimelineProps) {
+export default function ExperienceTimeline({
+  experience,
+}: ExperienceTimelineProps) {
   const entries = experience ?? [];
 
   return (

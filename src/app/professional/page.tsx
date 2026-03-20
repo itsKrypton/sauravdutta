@@ -10,7 +10,13 @@ import Education from "@/components/professional/Education";
 import ContactCTA from "@/components/professional/ContactCTA";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { ROUTES, SITE_CONFIG, DOORWAY, NAV_LABELS, SECTIONS } from "@/lib/constants";
+import {
+  ROUTES,
+  SITE_CONFIG,
+  DOORWAY,
+  NAV_LABELS,
+  SECTIONS,
+} from "@/lib/constants";
 import type { NavConfig } from "@/types";
 import {
   getExperience,
@@ -41,16 +47,23 @@ const navConfig: NavConfig = {
 };
 
 export default async function ProfessionalPage() {
-  const [experience, projects, skills, achievements, education, socials, siteSettings] =
-    await Promise.all([
-      getExperience(),
-      getProjects(),
-      getSkills(),
-      getAchievements(),
-      getEducation(),
-      getSocials(),
-      getSiteSettings(),
-    ]);
+  const [
+    experience,
+    projects,
+    skills,
+    achievements,
+    education,
+    socials,
+    siteSettings,
+  ] = await Promise.all([
+    getExperience(),
+    getProjects(),
+    getSkills(),
+    getAchievements(),
+    getEducation(),
+    getSocials(),
+    getSiteSettings(),
+  ]);
 
   return (
     <>

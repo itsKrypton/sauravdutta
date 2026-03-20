@@ -8,7 +8,9 @@ interface CodingAchievementsProps {
   achievements?: Achievement[];
 }
 
-export default function CodingAchievements({ achievements }: CodingAchievementsProps) {
+export default function CodingAchievements({
+  achievements,
+}: CodingAchievementsProps) {
   const items = achievements ?? [];
 
   return (

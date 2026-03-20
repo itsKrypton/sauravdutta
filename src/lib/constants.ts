@@ -1,7 +1,8 @@
 export const SITE_CONFIG = {
   name: "Saurav Dutta",
   title: "Software Engineer — Frontend",
-  tagline: "Building high-performance frontend architectures with Next.js & React. Bridging the gap between complex engineering and fluid user experiences.",
+  tagline:
+    "Building high-performance frontend architectures with Next.js & React. Bridging the gap between complex engineering and fluid user experiences.",
   subtitle: "Software Engineer. Guitarist. Fitness Enthusiast. Explorer.",
   email: "sauravdutta99@gmail.com",
   domain: "sauravdutta.com",
@@ -49,7 +50,8 @@ export const SECTIONS = {
   cta: {
     heading: "Let's ship something",
     accent: "epic.",
-    subtitle: "I'm always open to discussing new opportunities, interesting projects, and ways to create impact together.",
+    subtitle:
+      "I'm always open to discussing new opportunities, interesting projects, and ways to create impact together.",
     primaryButton: "Send a Message",
     secondaryButton: "Download Resume",
   },

@@ -37,19 +37,16 @@ export default function EntrySequence() {
     if (chosenSide) {
       const timer = setTimeout(() => {
         router.push(
-          chosenSide === "professional" ? ROUTES.professional : ROUTES.personal
+          chosenSide === "professional" ? ROUTES.professional : ROUTES.personal,
         );
       }, 700);
       return () => clearTimeout(timer);
     }
   }, [chosenSide, router]);
 
-  const handleChoose = useCallback(
-    (side: "professional" | "personal") => {
-      setChosenSide(side);
-    },
-    []
-  );
+  const handleChoose = useCallback((side: "professional" | "personal") => {
+    setChosenSide(side);
+  }, []);
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-bg-primary">
