@@ -1,0 +1,32 @@
+@layer base {
+  :root {
+    /* Light Mode — Cool & Clean */
+    --bg-primary: #f8fafa;
+    --bg-secondary: #eef2f3;
+    --bg-card: #ffffff;
+    --accent: #0d7377;
+    --accent-hover: #0a5c5f;
+    --text-primary: #1a1a2e;
+    --text-secondary: #5a6672;
+    --border: #d8dee3;
+
+    /* Animation */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    /* Dark Mode — Warm & Bold */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #1e1e1e;
+    --accent: #d4a843;
+    --accent-hover: #e4bc5a;
+    --text-primary: #f5f0e8;
+    --text-secondary: #a89f91;
+    --border: #2a2520;
+  }
+}
