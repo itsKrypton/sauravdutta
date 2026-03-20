@@ -39,6 +39,7 @@ export const personalTiles: PersonalTile[] = [
     title: "About Me",
     description: "The human behind the screen.",
     size: "small",
+    bgImage: "/images/casual.jpg",
   },
   {
     id: "socials",

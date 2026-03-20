@@ -1,3 +1,4 @@
+import Image from "next/image";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { SITE_CONFIG } from "@/lib/constants";
 import { socials } from "@/data/socials";
@@ -45,8 +46,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Placeholder image */}
-        <div className="h-64 w-64 flex-shrink-0 rounded-2xl border-2 border-border bg-bg-secondary md:h-80 md:w-80" />
+        {/* Headshot */}
+        <div className="relative h-64 w-64 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-border md:h-80 md:w-80">
+          <Image
+            src="/images/headshot.jpg"
+            alt="Saurav Dutta"
+            fill
+            className="object-cover object-top"
+            priority
+          />
+        </div>
       </div>
     </AnimatedSection>
   );

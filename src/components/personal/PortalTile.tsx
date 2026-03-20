@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { PersonalTile } from "@/types";
@@ -19,9 +20,11 @@ export default function PortalTile({ tile }: PortalTileProps) {
   const content = (
     <div className="group relative flex h-full flex-col justify-end overflow-hidden rounded-2xl border border-border bg-bg-card">
       {tile.bgImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-          style={{ backgroundImage: `url(${tile.bgImage})` }}
+        <Image
+          src={tile.bgImage}
+          alt={tile.title}
+          fill
+          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
       )}
 
