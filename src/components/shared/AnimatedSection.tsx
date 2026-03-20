@@ -1,0 +1,31 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface AnimatedSectionProps {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  delay?: number;
+}
+
+export default function AnimatedSection({
+  children,
+  className,
+  id,
+  delay = 0,
+}: AnimatedSectionProps) {
+  return (
+    <motion.section
+      id={id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] }}
+      className={cn("py-16 md:py-24", className)}
+    >
+      {children}
+    </motion.section>
+  );
+}
