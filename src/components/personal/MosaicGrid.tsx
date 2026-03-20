@@ -19,11 +19,12 @@ export default function MosaicGrid({ personalTiles }: MosaicGridProps) {
         <SectionHeading
           title={SECTIONS.personal.title}
           subtitle={SECTIONS.personal.subtitle}
+          accentWords="Person."
         />
 
-        <div className="grid auto-rows-[140px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {tiles.map((tile: PersonalTile) => (
-            <PortalTile key={tile.id} tile={tile} />
+        <div className="grid auto-rows-[180px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {tiles.map((tile: PersonalTile, idx: number) => (
+            <PortalTile key={tile.id} tile={tile} index={idx} />
           ))}
         </div>
       </div>

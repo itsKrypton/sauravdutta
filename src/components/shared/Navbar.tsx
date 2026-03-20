@@ -23,24 +23,25 @@ export default function Navbar({ config }: NavbarProps) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-border/30 bg-bg-primary/40 shadow-xl backdrop-blur-2xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Left — Logo */}
         <Link
           href="/"
-          className="font-heading text-lg font-semibold text-text-primary transition-colors duration-fast hover:text-accent"
+          className="font-heading text-lg font-bold tracking-tight text-text-primary transition-colors duration-fast hover:text-accent"
         >
-          {SITE_CONFIG.name}
+          {SITE_CONFIG.name.split(" ")[0].toUpperCase()}
+          <span className="text-accent">.</span>
         </Link>
 
         {/* Center — Section links (desktop) */}
         {config.showSectionLinks && config.sectionLinks && (
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-8 md:flex">
             {config.sectionLinks.map((link) => (
               <li key={link.href}>
                 <button
                   onClick={() => handleSectionClick(link.href)}
-                  className="text-sm text-text-secondary transition-colors duration-fast hover:text-accent"
+                  className="text-sm font-medium text-text-secondary transition-colors duration-fast hover:text-accent"
                 >
                   {link.label}
                 </button>
@@ -65,7 +66,7 @@ export default function Navbar({ config }: NavbarProps) {
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label="Toggle menu"
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-bg-card md:hidden"
+          className="glass-card flex h-9 w-9 items-center justify-center rounded-lg md:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +103,7 @@ export default function Navbar({ config }: NavbarProps) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-border md:hidden"
+            className="overflow-hidden border-t border-border/30 md:hidden"
           >
             <div className="flex flex-col px-4 py-4">
               {/* Section links */}
@@ -121,19 +122,19 @@ export default function Navbar({ config }: NavbarProps) {
               )}
 
               {/* Navigation actions */}
-              <div className="flex items-center justify-between border-t border-border pt-4">
+              <div className="flex items-center justify-between border-t border-border/30 pt-4">
                 <div className="flex items-center gap-4">
                   <Link
                     href={config.otherSideHref}
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-lg bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+                    className="rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
                   >
                     {config.otherSideLabel}
                   </Link>
                   <Link
                     href="/"
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-lg border border-border px-3 py-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
+                    className="rounded-full border border-border px-4 py-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
                   >
                     Doorway
                   </Link>

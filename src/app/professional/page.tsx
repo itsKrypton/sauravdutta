@@ -80,9 +80,10 @@ export default async function ProfessionalPage() {
             <SectionHeading
               title={SECTIONS.projects.title}
               subtitle={SECTIONS.projects.subtitle}
+              accentWords="Case Studies"
             />
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
               {projects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}

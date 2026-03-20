@@ -11,6 +11,8 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-border: var(--border);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-glow-strong: var(--accent-glow-strong);
 
   /* Fonts */
   --font-heading: var(--font-space-grotesk), sans-serif;
@@ -34,5 +36,56 @@
     transition:
       background-color var(--duration-normal) var(--easing-default),
       color var(--duration-normal) var(--easing-default);
+    background-image:
+      radial-gradient(circle at 0% 0%, var(--accent-glow) 0%, transparent 50%),
+      radial-gradient(
+        circle at 100% 100%,
+        var(--accent-glow) 0%,
+        transparent 50%
+      );
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: color-mix(in srgb, var(--bg-card) 40%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-from) 0%,
+      var(--gradient-to) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .aurora-bg {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+      color-mix(in srgb, var(--accent-hover) 10%, transparent) 100%
+    );
+  }
+
+  .accent-line {
+    height: 3px;
+    width: 4rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+      90deg,
+      var(--gradient-from),
+      var(--gradient-to)
+    );
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px var(--accent-glow);
   }
 }

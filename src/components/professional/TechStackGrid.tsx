@@ -1,6 +1,5 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
-import Card from "@/components/shared/Card";
 import { SECTIONS } from "@/lib/constants";
 import type { SkillCategory } from "@/types";
 
@@ -14,25 +13,30 @@ export default function TechStackGrid({ skills }: TechStackGridProps) {
   return (
     <AnimatedSection id="skills">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading title={SECTIONS.skills.title} />
+        <SectionHeading
+          title={SECTIONS.skills.title}
+          label="Technical Proficiency"
+        />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 xl:grid-cols-5">
           {categories.map((category: SkillCategory) => (
-            <Card key={category.id}>
-              <h3 className="mb-4 font-heading text-lg font-semibold text-accent">
+            <div
+              key={category.id}
+              className="glass-card group rounded-2xl p-8 transition-all duration-normal hover:shadow-[0_0_30px_var(--accent-glow)]"
+            >
+              {/* Icon square */}
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 transition-colors group-hover:bg-accent/20">
+                <span className="text-lg font-bold text-accent">
+                  {category.name.charAt(0)}
+                </span>
+              </div>
+              <h3 className="mb-3 font-heading text-base font-bold text-text-primary">
                 {category.name}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.items.map((item: string) => (
-                  <span
-                    key={item}
-                    className="rounded-md bg-bg-secondary px-3 py-1 text-sm text-text-secondary"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </Card>
+              <p className="text-[11px] leading-relaxed text-text-secondary">
+                {category.items.join(", ")}
+              </p>
+            </div>
           ))}
         </div>
       </div>

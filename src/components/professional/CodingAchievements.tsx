@@ -19,15 +19,21 @@ export default function CodingAchievements({
         <SectionHeading
           title={SECTIONS.achievements.title}
           subtitle={SECTIONS.achievements.subtitle}
+          label="Benchmarks"
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {items.map((a: Achievement) => (
             <Card key={a.id}>
-              {a.metric && (
-                <p className="text-3xl font-bold text-accent">{a.metric}</p>
-              )}
-              <p className="mt-2 text-text-secondary">{a.text}</p>
+              <div className="flex items-start gap-3">
+                <span className="mt-1 text-lg text-accent">&#10003;</span>
+                <div>
+                  {a.metric && (
+                    <p className="text-3xl font-bold text-accent">{a.metric}</p>
+                  )}
+                  <p className="mt-2 text-text-secondary">{a.text}</p>
+                </div>
+              </div>
             </Card>
           ))}
         </div>
