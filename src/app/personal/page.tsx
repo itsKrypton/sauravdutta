@@ -4,6 +4,7 @@ import Footer from "@/components/shared/Footer";
 import MosaicGrid from "@/components/personal/MosaicGrid";
 import { ROUTES } from "@/lib/constants";
 import type { NavConfig } from "@/types";
+import { getPersonalTiles } from "@/sanity/fetch";
 
 export const metadata: Metadata = {
   title: "Saurav Dutta | The Person",
@@ -17,13 +18,15 @@ const navConfig: NavConfig = {
   otherSideHref: ROUTES.professional,
 };
 
-export default function PersonalPage() {
+export default async function PersonalPage() {
+  const personalTiles = await getPersonalTiles();
+
   return (
     <>
       <Navbar config={navConfig} />
 
       <main className="min-h-screen bg-bg-primary">
-        <MosaicGrid />
+        <MosaicGrid personalTiles={personalTiles} />
       </main>
 
       <Footer variant="personal" />

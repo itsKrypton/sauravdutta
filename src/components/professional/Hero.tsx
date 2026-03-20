@@ -1,9 +1,21 @@
 import Image from "next/image";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { SITE_CONFIG } from "@/lib/constants";
-import { socials } from "@/data/socials";
+import type { SocialLink } from "@/types";
+import type { SiteSettings } from "@/sanity/fetch";
 
-export default function Hero() {
+interface HeroProps {
+  socials?: SocialLink[];
+  siteSettings?: SiteSettings;
+}
+
+export default function Hero({ socials, siteSettings }: HeroProps) {
+  const name = siteSettings?.name ?? SITE_CONFIG.name;
+  const tagline = siteSettings?.tagline ?? SITE_CONFIG.tagline;
+
+  // Fall back to static import if no props provided
+  const socialLinks = socials ?? require("@/data/socials").socials;
+
   return (
     <AnimatedSection id="hero" className="pt-24 md:pt-32">
       <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-4 sm:px-6 md:flex-row md:justify-between">
@@ -14,11 +26,11 @@ export default function Hero() {
           </span>
 
           <h1 className="mt-3 font-heading text-5xl font-bold tracking-tight text-text-primary md:text-7xl">
-            {SITE_CONFIG.name}
+            {name}
           </h1>
 
           <p className="mt-4 max-w-lg text-lg text-text-secondary md:text-xl">
-            {SITE_CONFIG.tagline}
+            {tagline}
           </p>
 
           {/* Status indicator */}
@@ -32,7 +44,7 @@ export default function Hero() {
 
           {/* Social links */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {socials.map((social) => (
+            {socialLinks.map((social: SocialLink) => (
               <a
                 key={social.name}
                 href={social.url}
@@ -52,7 +64,7 @@ export default function Hero() {
             src="/images/headshot.jpg"
             alt="Saurav Dutta"
             fill
-            className="object-cover object-top"
+            className="object-cover object-[center_20%]"
             priority
           />
         </div>

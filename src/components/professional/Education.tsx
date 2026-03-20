@@ -1,16 +1,22 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Card from "@/components/shared/Card";
-import { education } from "@/data/education";
+import type { EducationEntry } from "@/types";
 
-export default function Education() {
+interface EducationProps {
+  education?: EducationEntry[];
+}
+
+export default function Education({ education }: EducationProps) {
+  const entries = education ?? require("@/data/education").education;
+
   return (
     <AnimatedSection id="education">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading title="Education" />
 
         <div className="mx-auto max-w-2xl">
-          {education.map((edu) => (
+          {entries.map((edu: EducationEntry) => (
             <Card key={edu.id} hover={false}>
               <h3 className="font-heading text-xl font-bold text-text-primary">
                 {edu.degree}

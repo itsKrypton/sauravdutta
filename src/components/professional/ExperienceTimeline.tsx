@@ -1,8 +1,14 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { experience } from "@/data/experience";
+import type { ExperienceEntry } from "@/types";
 
-export default function ExperienceTimeline() {
+interface ExperienceTimelineProps {
+  experience?: ExperienceEntry[];
+}
+
+export default function ExperienceTimeline({ experience }: ExperienceTimelineProps) {
+  const entries = experience ?? require("@/data/experience").experience;
+
   return (
     <AnimatedSection id="experience">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -12,10 +18,10 @@ export default function ExperienceTimeline() {
         />
 
         <div className="relative ml-4 border-l-2 border-border pl-8 md:ml-8">
-          {experience.map((entry) => (
+          {entries.map((entry: ExperienceEntry) => (
             <div key={entry.id} className="relative mb-12 last:mb-0">
               {/* Timeline dot */}
-              <div className="absolute -left-[calc(2rem+5px)] top-1 h-3 w-3 rounded-full border-2 border-accent bg-bg-primary" />
+              <div className="absolute -left-[calc(2rem+7px)] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg-primary" />
 
               {/* Date */}
               <p className="text-sm text-text-secondary">
@@ -38,7 +44,7 @@ export default function ExperienceTimeline() {
 
               {/* Highlights */}
               <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-text-secondary">
-                {entry.highlights.map((h, i) => (
+                {entry.highlights.map((h: string, i: number) => (
                   <li key={i}>{h}</li>
                 ))}
               </ul>

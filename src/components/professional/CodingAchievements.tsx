@@ -1,9 +1,15 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Card from "@/components/shared/Card";
-import { achievements } from "@/data/achievements";
+import type { Achievement } from "@/types";
 
-export default function CodingAchievements() {
+interface CodingAchievementsProps {
+  achievements?: Achievement[];
+}
+
+export default function CodingAchievements({ achievements }: CodingAchievementsProps) {
+  const items = achievements ?? require("@/data/achievements").achievements;
+
   return (
     <AnimatedSection id="achievements">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -13,7 +19,7 @@ export default function CodingAchievements() {
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {achievements.map((a) => (
+          {items.map((a: Achievement) => (
             <Card key={a.id}>
               {a.metric && (
                 <p className="text-3xl font-bold text-accent">{a.metric}</p>

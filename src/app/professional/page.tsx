@@ -11,8 +11,16 @@ import ContactCTA from "@/components/professional/ContactCTA";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { ROUTES } from "@/lib/constants";
-import { projects } from "@/data/projects";
 import type { NavConfig } from "@/types";
+import {
+  getExperience,
+  getProjects,
+  getSkills,
+  getAchievements,
+  getEducation,
+  getSocials,
+  getSiteSettings,
+} from "@/sanity/fetch";
 
 export const metadata: Metadata = {
   title: "Saurav Dutta | Professional Portfolio",
@@ -33,15 +41,26 @@ const navConfig: NavConfig = {
   otherSideHref: ROUTES.personal,
 };
 
-export default function ProfessionalPage() {
+export default async function ProfessionalPage() {
+  const [experience, projects, skills, achievements, education, socials, siteSettings] =
+    await Promise.all([
+      getExperience(),
+      getProjects(),
+      getSkills(),
+      getAchievements(),
+      getEducation(),
+      getSocials(),
+      getSiteSettings(),
+    ]);
+
   return (
     <>
       <Navbar config={navConfig} />
 
       <main className="min-h-screen bg-bg-primary">
-        <Hero />
-        <TechStackGrid />
-        <ExperienceTimeline />
+        <Hero socials={socials} siteSettings={siteSettings} />
+        <TechStackGrid skills={skills} />
+        <ExperienceTimeline experience={experience} />
 
         {/* Projects */}
         <AnimatedSection id="projects">
@@ -59,8 +78,8 @@ export default function ProfessionalPage() {
           </div>
         </AnimatedSection>
 
-        <CodingAchievements />
-        <Education />
+        <CodingAchievements achievements={achievements} />
+        <Education education={education} />
         <ContactCTA />
       </main>
 
