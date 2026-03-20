@@ -19,8 +19,6 @@ export default function CodingAchievements({
         <SectionHeading
           title={SECTIONS.achievements.title}
           subtitle={SECTIONS.achievements.subtitle}
-          accentWord="Achievements"
-          label="MILESTONES"
         />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">

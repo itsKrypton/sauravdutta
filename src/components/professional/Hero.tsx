@@ -12,6 +12,8 @@ interface HeroProps {
 export default function Hero({ socials, siteSettings }: HeroProps) {
   const name = siteSettings?.name ?? SITE_CONFIG.name;
   const tagline = siteSettings?.tagline ?? SITE_CONFIG.tagline;
+
+  // Fall back to static import if no props provided
   const socialLinks = socials ?? [];
 
   return (
