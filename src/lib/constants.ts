@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   email: "sauravdutta99@gmail.com",
   domain: "sauravdutta.com",
   currentRole: "Frontend Engineer",
-  currentCompany: "Stage",
+  currentCompany: "STAGE",
 } as const;
 
 export const ROUTES = {

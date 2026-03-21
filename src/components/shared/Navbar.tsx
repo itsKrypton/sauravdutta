@@ -31,7 +31,6 @@ export default function Navbar({ config }: NavbarProps) {
           className="font-heading text-lg font-bold tracking-tight text-text-primary transition-colors duration-fast hover:text-accent"
         >
           {SITE_CONFIG.name.split(" ")[0].toUpperCase()}
-          <span className="text-accent">.</span>
         </Link>
 
         {/* Center — Section links (desktop) */}

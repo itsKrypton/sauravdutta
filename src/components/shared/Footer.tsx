@@ -17,7 +17,6 @@ export default function Footer({
         {/* Logo / Name */}
         <div className="font-heading text-xl font-bold tracking-tight text-text-primary">
           {SITE_CONFIG.name.split(" ")[0].toUpperCase()}
-          <span className="text-accent">.</span>
         </div>
 
         {/* Social links */}

@@ -31,7 +31,7 @@ export default function ContactCTA() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-border/50 px-12 py-5 text-lg font-bold text-text-primary transition-all duration-normal hover:bg-bg-card/30"
+                className="inline-flex items-center rounded-full border border-text-secondary/30 px-12 py-5 text-lg font-bold text-text-primary transition-all duration-normal hover:border-accent hover:text-accent hover:shadow-[0_0_20px_var(--accent-glow)]"
               >
                 {SECTIONS.cta.secondaryButton}
               </a>

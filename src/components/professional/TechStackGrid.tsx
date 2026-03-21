@@ -13,10 +13,7 @@ export default function TechStackGrid({ skills }: TechStackGridProps) {
   return (
     <AnimatedSection id="skills">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeading
-          title={SECTIONS.skills.title}
-          label="Technical Proficiency"
-        />
+        <SectionHeading title={SECTIONS.skills.title} label="Tech Stack" />
 
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4 xl:grid-cols-5">
           {categories.map((category: SkillCategory) => (

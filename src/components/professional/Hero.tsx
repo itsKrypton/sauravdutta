@@ -11,8 +11,6 @@ interface HeroProps {
 
 export default function Hero({ socials, siteSettings }: HeroProps) {
   const name = siteSettings?.name ?? SITE_CONFIG.name;
-  const tagline = siteSettings?.tagline ?? SITE_CONFIG.tagline;
-
   // Split name into first and last for accent styling
   const nameParts = name.split(" ");
   const firstName = nameParts[0];
@@ -40,7 +38,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
           <h1 className="mt-6 font-heading text-6xl font-black tracking-tighter text-text-primary md:text-8xl md:leading-[0.85]">
             {firstName}
             <br />
-            <span className="text-gradient">{lastName}.</span>
+            <span className="text-gradient">{lastName}</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl">
@@ -78,7 +76,7 @@ export default function Hero({ socials, siteSettings }: HeroProps) {
         </div>
 
         {/* Headshot */}
-        <div className="relative flex-shrink-0">
+        <div className="relative shrink-0">
           <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-2xl transition-all duration-slow group-hover:blur-3xl" />
           <div className="glass-card relative h-72 w-72 overflow-hidden rounded-3xl p-2 md:h-96 md:w-96">
             <Image

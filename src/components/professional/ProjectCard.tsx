@@ -7,11 +7,6 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="glass-card group relative overflow-hidden rounded-3xl transition-all duration-slow hover:shadow-[0_0_40px_var(--accent-glow)]">
-      {/* Gradient image placeholder */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-tr from-accent/20 to-accent-hover/20">
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-primary/80 to-transparent opacity-60" />
-      </div>
-
       {/* Content */}
       <div className="relative z-20 p-10">
         <div className="mb-6 flex items-start justify-between">
