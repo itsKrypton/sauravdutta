@@ -53,7 +53,7 @@ export interface PersonalTile {
   description: string;
   size: "large" | "medium" | "small";
   href?: string;
-  bgImage?: string;
+  bgImage?: any;
   icon?: string;
 }
 

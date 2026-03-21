@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { PersonalTile } from "@/types";
 import { cn } from "@/lib/utils";
+import { urlFor } from "@/sanity/image";
 
 interface PortalTileProps {
   tile: PersonalTile;
@@ -24,10 +25,14 @@ export default function PortalTile({ tile, index = 0 }: PortalTileProps) {
     <div className="group relative flex h-full flex-col justify-end overflow-hidden rounded-[3rem] border border-border/50 bg-bg-card shadow-2xl">
       {tile.bgImage && (
         <Image
-          src={tile.bgImage}
+          src={
+            typeof tile.bgImage === "string"
+              ? tile.bgImage
+              : urlFor(tile.bgImage).width(800).auto("format").url()
+          }
           alt={tile.title}
           fill
-          className="object-cover object-[center_25%] opacity-70 transition-transform duration-1000 group-hover:scale-110"
+          className="object-cover opacity-70 transition-transform duration-1000 group-hover:scale-110"
         />
       )}
 
