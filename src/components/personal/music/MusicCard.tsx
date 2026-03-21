@@ -1,10 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import type { MusicPost } from "@/types";
 import { cn } from "@/lib/utils";
+import {
+  InstagramIcon,
+  PlayIcon,
+  PinIcon,
+  CloseIcon,
+  VolumeMuteIcon,
+  VolumeUpIcon,
+} from "@/components/shared/Icons";
 
 interface MusicCardProps {
   post: MusicPost;
@@ -17,91 +25,196 @@ const sizeClasses: Record<MusicPost["size"], string> = {
 };
 
 export default function MusicCard({ post }: MusicCardProps) {
-  const [playing, setPlaying] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [pinned, setPinned] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const thumbnailSrc = post.thumbnailUrl || post.imageUrl;
+  const isVideo = post.type === "video" && post.mediaUrl;
+  const showVideo = isVideo && (hovered || pinned);
 
-  const handleClick = () => {
-    if (post.type === "instagram" && post.instagramUrl) {
-      window.open(post.instagramUrl, "_blank", "noopener,noreferrer");
-    } else if (post.type === "video") {
-      setPlaying(true);
+  const handleMouseEnter = () => {
+    setHovered(true);
+    if (isVideo && videoRef.current) {
+      hoverTimeout.current = setTimeout(() => {
+        videoRef.current?.play().catch(() => {});
+      }, 200);
     }
   };
 
+  const handleMouseLeave = () => {
+    if (pinned) return;
+    setHovered(false);
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    if (isVideo && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setMuted(true);
+      videoRef.current.muted = true;
+    }
+  };
+
+  const togglePin = () => {
+    if (pinned) {
+      setPinned(false);
+      setHovered(false);
+      setMuted(true);
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+        videoRef.current.pause();
+      }
+    } else {
+      setPinned(true);
+      videoRef.current?.play().catch(() => {});
+    }
+  };
+
+  const toggleMute = () => {
+    const next = !muted;
+    setMuted(next);
+    if (videoRef.current) videoRef.current.muted = next;
+  };
+
+  // Only instagram-only cards (no video) are clickable as a whole
+  const isCardClickable =
+    post.type === "instagram" && !post.mediaUrl && post.instagramUrl;
+
   return (
     <motion.div
-      className={cn(sizeClasses[post.size])}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={cn(sizeClasses[post.size], "relative")}
+      style={{ zIndex: hovered || pinned ? 20 : 1 }}
     >
-      <div
-        className="glass-card group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl transition-all duration-normal hover:shadow-[0_0_30px_var(--accent-glow)]"
-        onClick={handleClick}
+      <motion.div
+        className={cn(
+          "glass-card group relative flex h-full flex-col overflow-hidden rounded-2xl",
+          isCardClickable ? "cursor-pointer" : "cursor-default",
+        )}
+        animate={{
+          scale: showVideo ? 1.15 : 1,
+          boxShadow: showVideo
+            ? "0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow)"
+            : "none",
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={
+          isCardClickable
+            ? () =>
+                window.open(post.instagramUrl!, "_blank", "noopener,noreferrer")
+            : undefined
+        }
       >
         {/* Media area */}
         <div className="relative flex-1 overflow-hidden">
-          {/* Video playing inline */}
-          {post.type === "video" && playing && post.mediaUrl ? (
+          {/* Preloaded video */}
+          {isVideo && (
             <video
+              ref={videoRef}
               src={post.mediaUrl}
-              autoPlay
-              controls
-              className="absolute inset-0 h-full w-full object-cover"
+              muted={muted}
+              loop
+              playsInline
+              preload="metadata"
+              className={cn(
+                "absolute inset-0 h-full w-full object-cover transition-opacity duration-300",
+                showVideo ? "opacity-100" : "opacity-0",
+              )}
             />
-          ) : (
-            <>
-              {/* Thumbnail */}
-              {thumbnailSrc && (
-                <Image
-                  src={thumbnailSrc}
-                  alt={post.title || "Music post"}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              )}
+          )}
 
-              {/* Fallback gradient when no thumbnail */}
-              {!thumbnailSrc && (
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/10" />
+          {/* Thumbnail */}
+          {thumbnailSrc && (
+            <Image
+              src={thumbnailSrc}
+              alt={post.title || "Music post"}
+              fill
+              className={cn(
+                "object-cover transition-all duration-500",
+                showVideo
+                  ? "scale-105 opacity-0"
+                  : "opacity-100 group-hover:scale-105",
               )}
+            />
+          )}
 
-              {/* Type icon overlay */}
-              {post.type === "instagram" && (
-                <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
-                  <svg
-                    className="h-4 w-4 text-white"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                  </svg>
-                </div>
-              )}
+          {/* Fallback gradient */}
+          {!thumbnailSrc && !isVideo && (
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent-hover/10" />
+          )}
 
-              {/* Play button for video */}
-              {post.type === "video" && !playing && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-transform group-hover:scale-110">
-                    <svg
-                      className="ml-1 h-6 w-6 text-white"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
+          {/* Instagram link icon — always clickable independently */}
+          {post.instagramUrl && (
+            <a
+              href={post.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="absolute right-3 top-3 z-30 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-colors hover:bg-white/20"
+              aria-label="View on Instagram"
+            >
+              <InstagramIcon className="h-4 w-4 text-white" />
+            </a>
+          )}
+
+          {/* Play icon — fades out when playing */}
+          {isVideo && (
+            <div
+              className={cn(
+                "pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300",
+                showVideo ? "opacity-0" : "opacity-100",
               )}
-            </>
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/50 backdrop-blur-sm">
+                <PlayIcon className="h-6 w-6 text-white" />
+              </div>
+            </div>
+          )}
+
+          {/* Video controls — pin + mute */}
+          {isVideo && showVideo && (
+            <div className="absolute left-3 top-3 z-30 flex items-center gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  togglePin();
+                }}
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                aria-label={pinned ? "Unpin video" : "Pin video"}
+              >
+                {pinned ? <CloseIcon className="h-3.5 w-3.5" /> : <PinIcon />}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                aria-label={muted ? "Unmute" : "Mute"}
+              >
+                {muted ? <VolumeMuteIcon /> : <VolumeUpIcon />}
+              </button>
+            </div>
           )}
 
           {/* Bottom gradient overlay */}
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div
+            className={cn(
+              "absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-300",
+              showVideo ? "opacity-40" : "opacity-100",
+            )}
+          />
         </div>
 
         {/* Content overlay at bottom */}
-        <div className="absolute inset-x-0 bottom-0 p-4">
+        <div
+          className={cn(
+            "absolute inset-x-0 bottom-0 p-4 transition-opacity duration-300",
+            showVideo ? "opacity-0" : "opacity-100",
+          )}
+        >
           {post.title && (
             <h3 className="font-heading text-sm font-bold text-white md:text-base">
               {post.title}
@@ -125,7 +238,7 @@ export default function MusicCard({ post }: MusicCardProps) {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

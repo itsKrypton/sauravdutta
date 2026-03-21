@@ -1,4 +1,5 @@
 import type { Project } from "@/types";
+import { ArrowUpRightIcon } from "@/components/shared/Icons";
 
 interface ProjectCardProps {
   project: Project;
@@ -22,18 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
           {/* Arrow icon */}
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/50 bg-bg-card/30 transition-all group-hover:bg-accent group-hover:text-bg-primary">
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
+            <ArrowUpRightIcon />
           </div>
         </div>
 

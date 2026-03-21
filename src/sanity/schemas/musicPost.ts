@@ -33,7 +33,8 @@ export default defineType({
       name: "instagramUrl",
       title: "Instagram URL",
       type: "url",
-      hidden: ({ parent }) => parent?.type !== "instagram",
+      description:
+        "Optional — link to the Instagram reel/post for any content type",
     }),
     defineField({
       name: "media",

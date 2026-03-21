@@ -24,7 +24,7 @@ export default async function MusicPage() {
   return (
     <>
       <Navbar config={navConfig} />
-      <main className="min-h-screen bg-bg-primary pt-24 md:pt-32">
+      <main className="min-h-screen bg-bg-primary pb-20 pt-24 md:pb-28 md:pt-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           {/* Back link */}
           <Link
