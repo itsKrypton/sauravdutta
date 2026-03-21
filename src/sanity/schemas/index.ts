@@ -6,6 +6,7 @@ import education from "./education";
 import personalTile from "./personalTile";
 import socialLink from "./socialLink";
 import siteSettings from "./siteSettings";
+import musicPost from "./musicPost";
 
 export const schemas = [
   experience,
@@ -16,4 +17,5 @@ export const schemas = [
   personalTile,
   socialLink,
   siteSettings,
+  musicPost,
 ];

@@ -63,3 +63,17 @@ export interface NavConfig {
   otherSideLabel: string;
   otherSideHref: string;
 }
+
+export interface MusicPost {
+  _id: string;
+  title?: string;
+  caption?: string;
+  type: "instagram" | "video" | "image";
+  instagramUrl?: string;
+  mediaUrl?: string;
+  imageUrl?: string;
+  thumbnailUrl?: string;
+  tags?: string[];
+  size: "small" | "medium" | "large";
+  orderRank?: number;
+}

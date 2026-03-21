@@ -10,6 +10,7 @@ import type {
   EducationEntry,
   PersonalTile,
   SocialLink,
+  MusicPost,
 } from "@/types";
 
 export async function getExperience(): Promise<ExperienceEntry[]> {
@@ -99,5 +100,14 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     return data ?? staticSiteSettings;
   } catch {
     return staticSiteSettings;
+  }
+}
+
+export async function getMusicPosts(): Promise<MusicPost[]> {
+  try {
+    const data = await client.fetch(queries.musicPostsQuery);
+    return data?.length ? data : [];
+  } catch {
+    return [];
   }
 }

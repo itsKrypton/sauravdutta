@@ -6,3 +6,17 @@ export const educationQuery = `*[_type == "education"]`;
 export const personalTilesQuery = `*[_type == "personalTile"] | order(orderRank asc)`;
 export const socialsQuery = `*[_type == "socialLink"] | order(orderRank asc)`;
 export const siteSettingsQuery = `*[_type == "siteSettings"][0]`;
+
+export const musicPostsQuery = `*[_type == "musicPost"] | order(orderRank asc) {
+  _id,
+  title,
+  caption,
+  type,
+  instagramUrl,
+  "mediaUrl": media.asset->url,
+  "imageUrl": image.asset->url,
+  "thumbnailUrl": thumbnail.asset->url,
+  tags,
+  size,
+  orderRank
+}`;
