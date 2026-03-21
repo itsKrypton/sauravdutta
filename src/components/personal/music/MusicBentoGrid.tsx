@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { MusicPost } from "@/types";
 import MusicCard from "./MusicCard";
 import TagFilter from "./TagFilter";
+import VideoOverlay from "./VideoOverlay";
 
 interface MusicBentoGridProps {
   posts: MusicPost[];
@@ -11,6 +12,7 @@ interface MusicBentoGridProps {
 
 export default function MusicBentoGrid({ posts }: MusicBentoGridProps) {
   const [activeTag, setActiveTag] = useState("All");
+  const [overlayPost, setOverlayPost] = useState<MusicPost | null>(null);
 
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
@@ -22,6 +24,10 @@ export default function MusicBentoGrid({ posts }: MusicBentoGridProps) {
     if (activeTag === "All") return posts;
     return posts.filter((post) => post.tags?.includes(activeTag));
   }, [posts, activeTag]);
+
+  const handleMobilePlay = useCallback((post: MusicPost) => {
+    setOverlayPost(post);
+  }, []);
 
   if (posts.length === 0) {
     return (
@@ -47,7 +53,11 @@ export default function MusicBentoGrid({ posts }: MusicBentoGridProps) {
       {/* Bento grid */}
       <div className="grid auto-rows-[200px] grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {filteredPosts.map((post) => (
-          <MusicCard key={post._id} post={post} />
+          <MusicCard
+            key={post._id}
+            post={post}
+            onMobilePlay={handleMobilePlay}
+          />
         ))}
       </div>
 
@@ -56,6 +66,9 @@ export default function MusicBentoGrid({ posts }: MusicBentoGridProps) {
           <p>No posts with tag &ldquo;{activeTag}&rdquo;</p>
         </div>
       )}
+
+      {/* Fullscreen video overlay for mobile */}
+      <VideoOverlay post={overlayPost} onClose={() => setOverlayPost(null)} />
     </div>
   );
 }

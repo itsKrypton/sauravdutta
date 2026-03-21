@@ -16,6 +16,7 @@ import {
 
 interface MusicCardProps {
   post: MusicPost;
+  onMobilePlay?: (post: MusicPost) => void;
 }
 
 const sizeClasses: Record<MusicPost["size"], string> = {
@@ -24,7 +25,7 @@ const sizeClasses: Record<MusicPost["size"], string> = {
   large: "col-span-2 row-span-2",
 };
 
-export default function MusicCard({ post }: MusicCardProps) {
+export default function MusicCard({ post, onMobilePlay }: MusicCardProps) {
   const [hovered, setHovered] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -35,7 +36,12 @@ export default function MusicCard({ post }: MusicCardProps) {
   const isVideo = post.type === "video" && post.mediaUrl;
   const showVideo = isVideo && (hovered || pinned);
 
+  // Detect touch device
+  const isTouchDevice =
+    typeof window !== "undefined" && "ontouchstart" in window;
+
   const handleMouseEnter = () => {
+    if (isTouchDevice) return; // Skip hover on touch
     setHovered(true);
     if (isVideo && videoRef.current) {
       hoverTimeout.current = setTimeout(() => {
@@ -45,6 +51,7 @@ export default function MusicCard({ post }: MusicCardProps) {
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     if (pinned) return;
     setHovered(false);
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
@@ -77,9 +84,19 @@ export default function MusicCard({ post }: MusicCardProps) {
     if (videoRef.current) videoRef.current.muted = next;
   };
 
-  // Only instagram-only cards (no video) are clickable as a whole
+  // Handle card tap/click
+  const handleCardClick = () => {
+    if (post.type === "instagram" && !post.mediaUrl && post.instagramUrl) {
+      window.open(post.instagramUrl, "_blank", "noopener,noreferrer");
+    } else if (isVideo && isTouchDevice && onMobilePlay) {
+      // On mobile, open fullscreen overlay
+      onMobilePlay(post);
+    }
+  };
+
   const isCardClickable =
-    post.type === "instagram" && !post.mediaUrl && post.instagramUrl;
+    (post.type === "instagram" && !post.mediaUrl && post.instagramUrl) ||
+    (isVideo && isTouchDevice);
 
   return (
     <motion.div
@@ -92,7 +109,7 @@ export default function MusicCard({ post }: MusicCardProps) {
           isCardClickable ? "cursor-pointer" : "cursor-default",
         )}
         animate={{
-          scale: showVideo ? 1.15 : 1,
+          scale: showVideo && !isTouchDevice ? 1.15 : 1,
           boxShadow: showVideo
             ? "0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow)"
             : "none",
@@ -100,12 +117,7 @@ export default function MusicCard({ post }: MusicCardProps) {
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={
-          isCardClickable
-            ? () =>
-                window.open(post.instagramUrl!, "_blank", "noopener,noreferrer")
-            : undefined
-        }
+        onClick={isCardClickable ? handleCardClick : undefined}
       >
         {/* Media area */}
         <div className="relative flex-1 overflow-hidden">
