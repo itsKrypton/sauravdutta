@@ -43,6 +43,12 @@ export default defineType({
       type: "image",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "resume",
+      title: "Resume (PDF)",
+      type: "file",
+      options: { accept: ".pdf" },
+    }),
   ],
   preview: {
     select: { title: "name" },

@@ -93,7 +93,7 @@ export default async function ProfessionalPage() {
 
         <CodingAchievements achievements={achievements} />
         <Education education={education} />
-        <ContactCTA />
+        <ContactCTA resumeUrl={siteSettings.resumeUrl} />
       </main>
 
       <Footer variant="professional" />

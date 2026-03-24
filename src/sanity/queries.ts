@@ -5,7 +5,7 @@ export const achievementsQuery = `*[_type == "achievement"]`;
 export const educationQuery = `*[_type == "education"]`;
 export const personalTilesQuery = `*[_type == "personalTile"] | order(orderRank asc)`;
 export const socialsQuery = `*[_type == "socialLink"] | order(orderRank asc)`;
-export const siteSettingsQuery = `*[_type == "siteSettings"][0]`;
+export const siteSettingsQuery = `*[_type == "siteSettings"][0] { ..., "resumeUrl": resume.asset->url }`;
 
 export const musicPostsQuery = `*[_type == "musicPost"] | order(orderRank asc) {
   _id,

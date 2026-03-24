@@ -1,7 +1,7 @@
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { SITE_CONFIG, SECTIONS } from "@/lib/constants";
 
-export default function ContactCTA() {
+export default function ContactCTA({ resumeUrl }: { resumeUrl?: string }) {
   return (
     <AnimatedSection>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -28,7 +28,7 @@ export default function ContactCTA() {
                 {SECTIONS.cta.primaryButton}
               </a>
               <a
-                href="/resume.pdf"
+                href={resumeUrl || "/resume.pdf"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full border border-text-secondary/30 px-12 py-5 text-lg font-bold text-text-primary transition-all duration-normal hover:border-accent hover:text-accent hover:shadow-[0_0_20px_var(--accent-glow)]"

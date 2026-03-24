@@ -86,6 +86,7 @@ export interface SiteSettings {
   domain: string;
   headshot?: any;
   casualPhoto?: any;
+  resumeUrl?: string;
 }
 
 const staticSiteSettings: SiteSettings = {
