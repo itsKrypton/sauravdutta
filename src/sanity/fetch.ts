@@ -13,9 +13,11 @@ import type {
   MusicPost,
 } from "@/types";
 
+const revalidateOpts = { next: { revalidate: 60 } };
+
 export async function getExperience(): Promise<ExperienceEntry[]> {
   try {
-    const data = await client.fetch(queries.experienceQuery);
+    const data = await client.fetch(queries.experienceQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -24,7 +26,7 @@ export async function getExperience(): Promise<ExperienceEntry[]> {
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const data = await client.fetch(queries.projectsQuery);
+    const data = await client.fetch(queries.projectsQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -33,7 +35,7 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getSkills(): Promise<SkillCategory[]> {
   try {
-    const data = await client.fetch(queries.skillsQuery);
+    const data = await client.fetch(queries.skillsQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -42,7 +44,7 @@ export async function getSkills(): Promise<SkillCategory[]> {
 
 export async function getAchievements(): Promise<Achievement[]> {
   try {
-    const data = await client.fetch(queries.achievementsQuery);
+    const data = await client.fetch(queries.achievementsQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -51,7 +53,7 @@ export async function getAchievements(): Promise<Achievement[]> {
 
 export async function getEducation(): Promise<EducationEntry[]> {
   try {
-    const data = await client.fetch(queries.educationQuery);
+    const data = await client.fetch(queries.educationQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -60,7 +62,7 @@ export async function getEducation(): Promise<EducationEntry[]> {
 
 export async function getPersonalTiles(): Promise<PersonalTile[]> {
   try {
-    const data = await client.fetch(queries.personalTilesQuery);
+    const data = await client.fetch(queries.personalTilesQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -69,7 +71,7 @@ export async function getPersonalTiles(): Promise<PersonalTile[]> {
 
 export async function getSocials(): Promise<SocialLink[]> {
   try {
-    const data = await client.fetch(queries.socialsQuery);
+    const data = await client.fetch(queries.socialsQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
@@ -96,7 +98,7 @@ const staticSiteSettings: SiteSettings = {
 
 export async function getSiteSettings(): Promise<SiteSettings> {
   try {
-    const data = await client.fetch(queries.siteSettingsQuery);
+    const data = await client.fetch(queries.siteSettingsQuery, {}, revalidateOpts);
     return data ?? staticSiteSettings;
   } catch {
     return staticSiteSettings;
@@ -105,7 +107,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 export async function getMusicPosts(): Promise<MusicPost[]> {
   try {
-    const data = await client.fetch(queries.musicPostsQuery);
+    const data = await client.fetch(queries.musicPostsQuery, {}, revalidateOpts);
     return data?.length ? data : [];
   } catch {
     return [];
